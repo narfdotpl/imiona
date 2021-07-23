@@ -42,10 +42,12 @@ def _main():
 
     total_children = sum(nd.total_children for nd in data_by_name.values())
 
-    print('pozycja,imię,liczba,udział')
+    print('pozycja,imię,liczba,udział,jedna na')
 
     for (i, data) in enumerate(sorted(data_by_name.values(), key=lambda nd: -nd.total_children), start=1):
-        print(f'{i},{data.name},{data.total_children},{data.total_children / total_children}')
+        popularity = data.total_children / total_children
+        one_per = int(round(1.0 / popularity))
+        print(f'{i},{data.name},{data.total_children},{popularity},{one_per}')
 
 
 if __name__ == '__main__':
