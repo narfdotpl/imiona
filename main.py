@@ -45,6 +45,7 @@ def _main():
     for (year, year_data) in [
         (2018, read_2018()),
         (2019, read_csv(2019)),
+        (2020, read_csv(2020)),
     ]:
         for (name, children) in year_data:
             if name not in data_by_name:
