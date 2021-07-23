@@ -28,11 +28,23 @@ def read_2018() -> Iterator[Tuple[str, int]]:
             yield (name.title(), int(count))
 
 
+def read_csv(year: int) -> Iterator[Tuple[str, int]]:
+    path = join(DATA_DIR, f'{year}.csv')
+    with open(path) as f:
+        for (i, line) in enumerate(f):
+            if i == 0:
+                continue
+
+            name, gender, count = line.strip().split(',')
+            yield (name.title(), int(count))
+
+
 def _main():
     data_by_name = {}
 
     for (year, year_data) in [
         (2018, read_2018()),
+        (2019, read_csv(2019)),
     ]:
         for (name, children) in year_data:
             if name not in data_by_name:
